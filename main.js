@@ -9,6 +9,21 @@ console.log("Lab Loaded");
 // 3. Add the property surname with the value Smith.
 // 4. Change the value of the name to Pete.
 
+// ***************************************** SOLUTION! *****************************************************************?
+
+// let user = {
+    
+
+
+// };
+
+// user["firstname"] = "John";
+// user["surname"] = "Smith";
+
+// console.log(user);
+// user["firstname"] = "Pete";
+// console.log(user);
+
 
 // 1. Copy and sort array
 
@@ -23,6 +38,19 @@ console.log("Lab Loaded");
 // alert( sorted ); // CSS, HTML, JavaScript
 // alert( arr ); // HTML, JavaScript, CSS (no changes)
 
+// ***************************************** SOLUTION! *****************************************************************?
+
+// const sorted_array = (arr) => {
+//     // spread operator, takes coll of array or object and spreads out parts of it
+//     // putting all of data from arr in our new array
+//     let original_array = [...arr];
+//     let sorted_array = arr.sort();
+//     alert(original_array);
+//     alert(sorted_array);
+// }
+
+// (sorted_array(["HTML", "JavaScript", "Python", "Ruby on Rails", "CSS"]));
+
 
 // 2. Map to names
 
@@ -30,15 +58,21 @@ console.log("Lab Loaded");
 
 // For instance:
 
-// let john = { name: "John", age: 25 };
-// let pete = { name: "Pete", age: 30 };
-// let mary = { name: "Mary", age: 28 };
+// ***************************************** SOLUTION! *****************************************************************?
 
-// let users = [ john, pete, mary ];
 
-// let names = /* ... your code */
+// const array_of_names = (information) => {
+//     let names = information.map(user => user["name"])
+//     return names; 
+// }
 
-// alert( names ); // John, Pete, Mary
+// let awad = {name: "Awad", age: 31};
+// let jim = {name: "Jim", age: 27};
+// let michael = {name: "Michael", age: 43};
+
+// let users = [awad,jim,michael];
+// console.log(array_of_names(users));
+
 
 
 // 3. Map to objects
@@ -48,21 +82,38 @@ console.log("Lab Loaded");
 
 // For instance:
 
+
+
+// need parantheses to differentiate from using as function since 
+// const map_to_objects = (list_of_objects) => {
+
+//     let usersMapped = list_of_objects.map(obj => {
+//       // map to a new object and put it in the list
+//       let newObj = {};
+//       newObj["fullName"] = obj.name + " " + obj.surname;
+//       newObj["id"] = obj.id;
+//       // returning for .map, needed to load data into our usersMapped
+//       return newObj;
+//     });
+//     // return overall function
+//     return usersMapped;
+
+// }
+
 // let john = { name: "John", surname: "Smith", id: 1 };
 // let pete = { name: "Pete", surname: "Hunt", id: 2 };
 // let mary = { name: "Mary", surname: "Key", id: 3 };
 
 // let users = [ john, pete, mary ];
+// console.log(map_to_objects(users));
 
-// let usersMapped = /* ... your code ... */
-
-// /*
-// usersMapped = [
-//   { fullName: "John Smith", id: 1 },
-//   { fullName: "Pete Hunt", id: 2 },
-//   { fullName: "Mary Key", id: 3 }
-// ]
-// */
+/*
+usersMapped = [
+  { fullName: "John Smith", id: 1 },
+  { fullName: "Pete Hunt", id: 2 },
+  { fullName: "Mary Key", id: 3 }
+]
+*/
 
 // alert( usersMapped[0].id ) // 1
 // alert( usersMapped[0].fullName ) // John Smith
@@ -72,9 +123,19 @@ console.log("Lab Loaded");
 
 // 4. Sort users by age
 
-// Write the function sortByAge(users) that gets an array of objects with the age property and sorts them by age.
+// const sortByAge = (list_of_objects) => {
+//   // a and b are 2 objects we are comparing loop\
+//   // ex: a and b are John and Pete
+//   // a.age - b.age sorts order by age, going to change the array when we first call it, modify old array
+//   let sortedAges = list_of_objects.sort((a,b) => a.age - b.age );
+//   return sortedAges;
+// }
 
-// For instance:
+
+
+// // Write the function sortByAge(users) that gets an array of objects with the age property and sorts them by age.
+
+// // For instance:
 
 // let john = { name: "John", age: 25 };
 // let pete = { name: "Pete", age: 30 };
@@ -82,7 +143,7 @@ console.log("Lab Loaded");
 
 // let arr = [ pete, john, mary ];
 
-// sortByAge(arr);
+// console.log(sortByAge(arr));
 
 // // now: [john, mary, pete]
 // alert(arr[0].name); // John
@@ -106,6 +167,25 @@ console.log("Lab Loaded");
 
 // alert( getAverageAge(arr) ); // (25 + 30 + 29) / 3 = 28
 
+// ************************************* SOLUTION! ************************************************************?
+
+// const getAverageAge = (users) => {
+//     let totalAge = 0;
+//     for (let i = 0; i < users.length; i++) {
+//         totalAge += users[i].age;
+//     }
+
+//     let total_length = users.length;
+//     return parseFloat(totalAge)/(total_length);
+// }
+
+// let john = { name: "John", age: 25 };
+// let pete = { name: "Pete", age: 30 };
+// let mary = { name: "Mary", age: 29 };
+// let mar = { name: "Mary", age: 20 };
+// let users = [john,pete,mary,mar];
+// console.log(getAverageAge(users));
+
 
 // 6. Filter unique array members
 
@@ -117,34 +197,74 @@ console.log("Lab Loaded");
 
 // function unique(arr) {
 //   /* your code */
+  
+//   // set is a list structure similar to array, except CANNOT have 2 of the same variables
+//   // CANNOT index a set!
+//   // ... takes array object, break out all elements in array as if we typed in commas between them
+//   // 
+//   let uniqueElements = [...new Set(arr)];
+//   return uniqueElements;
 // }
 
 // let strings = ["Hare", "Krishna", "Hare", "Krishna",
 //   "Krishna", "Krishna", "Hare", "Hare", ":-O"
 // ];
 
-// alert( unique(strings) ); // Hare, Krishna, :-O
+// console.log(( unique(strings) )); // Hare, Krishna, :-O
 
 
 // 7. Sum object properties
 
 // We have an object storing salaries of our team:
 
-// let salaries = {
-//   John: 100,
-//   Ann: 160,
-//   Pete: 130
-// }
 // Write the code to sum all salaries and store in the variable sum. Should be 390 in the example above.
 
 // If salaries is empty, then the result must be 0
+
+// *********************************** SOLUTION ******************************************************/
+
+// const total_salaries = (team) => {
+//   // let sum = Object.values(team);
+//   let total_salaries = 0;
+//   for (salary in team) {
+//     total_salaries += team[salary];
+//   }
+
+//   // if salaries is empty, return 0!
+//   if ((Object.values(team)).length == 0) {
+//     return "EMPTY!";
+//   }
+
+//   return total_salaries;
+
+  
+
+// let salaries = {
+
+// }
+// console.log(total_salaries(salaries));
+
+
+
 
 
 // 8. Multiply numeric properties by 2
 
 // Create a function multiplyNumeric(obj) that multiplies all numeric properties of obj by 2.
 
-// For instance:
+// ************************************************ SOLUTION **********************************************************?
+
+// const multiplyNumeric = (obj) => {
+//   for (key in obj) {
+//     if (typeof obj[key] == 'number') {
+//       obj[key] = obj[key]*2;
+//     };
+//   }
+//   return obj;
+  
+// }
+
+// // For instance:
 
 // // before the call
 // let menu = {
@@ -153,7 +273,7 @@ console.log("Lab Loaded");
 //   title: "My menu"
 // };
 
-// multiplyNumeric(menu);
+// console.log(multiplyNumeric(menu));
 
 // // after the call
 // menu = {
@@ -167,6 +287,23 @@ console.log("Lab Loaded");
 
 
 // 9. Create new Accumulator
+
+// ex:
+// function User(name, age) {
+//   this.name = name;
+//   this.age = age;
+//   // method
+//   this.sayHi = function() {
+//       console.log(`Hello my name is ${this.name}`)
+//   }
+
+// }
+
+// let superUser = new User("Jack", 37);
+// console.log(superUser["name"]);
+// console.log(superUser["age"]);
+
+// superUser.sayHi();
   
 //   Create a constructor function Accumulator(startingValue).
   
@@ -182,3 +319,28 @@ console.log("Lab Loaded");
 //   accumulator.read(); // adds the user-entered value
 //   accumulator.read(); // adds the user-entered value
 //   alert(accumulator.value); // shows the sum of these values
+
+// **************************************  SOLUTION! ******************************************************/
+
+// function Accumulator(startingValue) {
+//   this.value = startingValue;
+//   this.read = function() {
+//     let newValue = parseFloat(window.prompt(("Enter a value: ")));
+//     this.value += newValue
+//   }
+// }
+
+// let total = new Accumulator(13);
+// total.read();
+// total.read();
+// total.read();
+// total.read();
+// total.read();
+// console.log(total.value);
+
+
+
+
+
+
+
