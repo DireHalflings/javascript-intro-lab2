@@ -9,6 +9,10 @@ console.log("Lab Loaded");
 // 3. Add the property surname with the value Smith.
 // 4. Change the value of the name to Pete.
 
+let user = {};
+user.name = "John";
+user.surname = "Smith";
+user.name = "Pete";
 
 // 1. Copy and sort array
 
@@ -23,6 +27,16 @@ console.log("Lab Loaded");
 // alert( sorted ); // CSS, HTML, JavaScript
 // alert( arr ); // HTML, JavaScript, CSS (no changes)
 
+let arr = ["HTML", "JavaScript", "CSS"];
+
+const copySorted = (arr) => {
+    return arr.slice().sort();
+}
+
+let sorted = copySorted(arr)
+alert( sorted );
+alert( arr );
+
 
 // 2. Map to names
 
@@ -30,16 +44,25 @@ console.log("Lab Loaded");
 
 // For instance:
 
-// let john = { name: "John", age: 25 };
-// let pete = { name: "Pete", age: 30 };
-// let mary = { name: "Mary", age: 28 };
+let john = { name: "John", age: 25 };
+let pete = { name: "Pete", age: 30 };
+let mary = { name: "Mary", age: 28 };
 
-// let users = [ john, pete, mary ];
+let users = [ john, pete, mary ];
 
-// let names = /* ... your code */
+let names = /* ... your code */
 
-// alert( names ); // John, Pete, Mary
+alert( names ); // John, Pete, Mary
 
+let john = { name: "John", age: 25 };
+let pete = { name: "Pete", age: 30 };
+let mary = { name: "Mary", age: 28 };
+
+let users = [john, pete, mary];
+
+let names = users.map(user => user.name);
+
+// alert( names );
 
 // 3. Map to objects
 // You have an array of user objects, each one has name, surname and id.
@@ -69,6 +92,20 @@ console.log("Lab Loaded");
 
 // So, actually you need to map one array of objects to another. 
 
+let john = { name: "John", surname: "Smith", id: 1 };
+let pete = { name: "Pete", surname: "Hunt", id: 2 };
+let mary = { name: "Mary", surname: "Key", id: 3 };
+
+let users = [ john, pete, mary ];
+
+function userMap (user) {
+    return {fullName: user.name + ' ' + user.surname, id: user.id};
+}
+
+let usersMapped = users.map(userMap);
+
+alert( usersMapped[1].id ) // 1
+alert( usersMapped[1].fullName ) // John Smith
 
 // 4. Sort users by age
 
@@ -89,6 +126,22 @@ console.log("Lab Loaded");
 // alert(arr[1].name); // Mary
 // alert(arr[2].name); // Pete
 
+let john = { name: "John", age: 25 };
+let pete = { name: "Pete", age: 30 };
+let mary = { name: "Mary", age: 28 };
+
+let arr = [ pete, john, mary ];
+
+const sortByAge = (users) => {
+    return users.sort((a,b) => (a.age - b.age));
+}
+
+sortByAge(arr);
+
+// now: [john, mary, pete]
+alert(arr[0].name); // John
+alert(arr[1].name); // Mary
+alert(arr[2].name); // Pete
 
 // 5. Get average age
 
@@ -105,6 +158,24 @@ console.log("Lab Loaded");
 // let arr = [ john, pete, mary ];
 
 // alert( getAverageAge(arr) ); // (25 + 30 + 29) / 3 = 28
+
+let john = { name: "John", age: 25 };
+let pete = { name: "Pete", age: 30 };
+let mary = { name: "Mary", age: 29 };
+
+let arr = [ john, pete, mary ];
+
+const getAverageAge = (users) => {
+    let userAges = users.map(user => parseInt(user.age));
+    let length = userAges.length;
+    let totalAge = 0;
+    for (let age of userAges) {
+        totalAge = totalAge + age;
+    }
+    return totalAge / length;
+}
+
+alert( getAverageAge(arr) ); // (25 + 30 + 29) / 3 = 28
 
 
 // 6. Filter unique array members
@@ -125,6 +196,18 @@ console.log("Lab Loaded");
 
 // alert( unique(strings) ); // Hare, Krishna, :-O
 
+function unique(arr) {
+    let uniqueStrings = arr.filter((string, index) => {
+        return arr.indexOf(string) === index;
+    });
+    return uniqueStrings;
+}
+
+let strings = ["Hare", "Krishna", "Hare", "Krishna",
+  "Krishna", "Krishna", "Hare", "Hare", ":-O"
+];
+
+alert( unique(strings) );
 
 // 7. Sum object properties
 
@@ -139,6 +222,17 @@ console.log("Lab Loaded");
 
 // If salaries is empty, then the result must be 0
 
+let salaries = {
+  John: 100,
+  Ann: 160,
+  Pete: 130
+};
+let sum = 0;
+
+for (const name in salaries) {
+    sum = sum + salaries[name];
+};
+alert(sum);
 
 // 8. Multiply numeric properties by 2
 
@@ -165,6 +259,22 @@ console.log("Lab Loaded");
 
 // P.S. Use typeof to check for a number here.
 
+let menu = {
+  width: 200,
+  height: 300,
+  title: "My menu"
+};
+
+const multiplyNumeric = (obj) => {
+    for (const property in obj) {
+        if ( typeof(obj[property]) == 'number' ) {
+            obj[property] = obj[property] * 2;
+        }
+    }
+    return obj;
+}
+
+console.log(multiplyNumeric(menu));
 
 // 9. Create new Accumulator
   
@@ -182,3 +292,16 @@ console.log("Lab Loaded");
 //   accumulator.read(); // adds the user-entered value
 //   accumulator.read(); // adds the user-entered value
 //   alert(accumulator.value); // shows the sum of these values
+
+function Accumulator(startingValue) {
+    this.value = startingValue;
+    this.read = function () {
+        let newNum = parseInt(window.prompt("Enter a new number:"));
+        this.value = this.value + newNum;
+    }
+}
+
+let accumulator = new Accumulator(1); // initial value 1
+accumulator.read(); // adds the user-entered value
+accumulator.read(); // adds the user-entered value
+alert(accumulator.value); // shows the sum of these values
